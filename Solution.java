@@ -16,14 +16,13 @@ public class Solution {
 	 * appended string.
 	 * 
 	 * If the operation is "delete", the object "Operation" stores the actual
-	 * appended string.
+	 * deleted string.
 	 */
 	private static Stack<Operation> undo;
 	private static StringBuilder currentString;
 
 	/**
-	 * Instead of Scanner and System.out.print, BufferedReader and BufferedWriter
-	 * are applied for faster input and output.
+	 * BufferedReader and BufferedWriter are applied for faster input and output.
 	 */
 	public static void main(String[] args) throws IOException {
 
@@ -31,6 +30,7 @@ public class Solution {
 		StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine());
 		BufferedWriter bufferedWriter = new BufferedWriter(
 				new OutputStreamWriter(new FileOutputStream(java.io.FileDescriptor.out), "ASCII"), 512);
+
 		int numberOfOperations = Integer.parseInt(stringTokenizer.nextToken());
 		currentString = new StringBuilder();
 		undo = new Stack<Operation>();
@@ -84,7 +84,6 @@ public class Solution {
 
 	private static void undo() {
 		Operation op = undo.pop();
-
 		if (op.codeOfOperation == 1) {
 			int fromIndex = currentString.length() - op.lengthOfAppendedString;
 			int toIndex = currentString.length();
